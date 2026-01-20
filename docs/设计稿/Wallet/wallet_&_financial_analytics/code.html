@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aladdin Protocol - Wallet &amp; Financial Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<nav class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-white text-xl">auto_awesome</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Aladdin <span class="text-primary">Protocol</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 font-medium transition-colors" href="#">Agent</a>
+<a class="text-primary font-semibold border-b-2 border-primary pb-1" href="#">Wallet</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 font-medium transition-colors" href="#">Bills</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 font-medium transition-colors" href="#">DAO</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round text-slate-600 dark:text-slate-300">dark_mode</span>
+</button>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+<div class="w-6 h-6 rounded-full bg-gradient-to-tr from-primary to-purple-500"></div>
+<span class="text-sm font-medium">0x71...3f2b</span>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Balance</span>
+<span class="material-icons-round text-primary">account_balance_wallet</span>
+</div>
+<div class="text-2xl font-bold">$42,905.12</div>
+<div class="text-xs text-green-500 flex items-center mt-2">
+<span class="material-icons-round text-xs">trending_up</span>
+<span>+12.5% from last month</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Daily Revenue</span>
+<span class="material-icons-round text-blue-500">payments</span>
+</div>
+<div class="text-2xl font-bold">$1,280.40</div>
+<div class="text-xs text-slate-400 mt-2">Expected by 11:59 PM</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Active Agents</span>
+<span class="material-icons-round text-purple-500">smart_toy</span>
+</div>
+<div class="text-2xl font-bold">14</div>
+<div class="text-xs text-slate-400 mt-2">2 currently in dispute</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Staked Assets</span>
+<span class="material-icons-round text-orange-500">lock</span>
+</div>
+<div class="text-2xl font-bold">12,500 ALD</div>
+<div class="text-xs text-green-500 flex items-center mt-2">
+<span>APY: 8.4%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold">Earnings Overview</h2>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-all">7D</button>
+<button class="px-3 py-1 text-xs font-medium rounded-md bg-primary text-white">30D</button>
+<button class="px-3 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-all">1Y</button>
+</div>
+</div>
+<div class="relative h-64 w-full chart-gradient rounded-xl border border-dashed border-slate-200 dark:border-slate-700 flex items-end px-4 pb-2">
+<svg class="absolute inset-0 w-full h-full px-4" preserveAspectRatio="none">
+<path class="text-primary" d="M0 200 Q 50 180 100 210 T 200 150 T 300 170 T 400 100 T 500 120 T 600 80 T 700 90" fill="none" stroke="currentColor" stroke-width="3"></path>
+</svg>
+<div class="flex justify-between w-full text-[10px] text-slate-400 font-medium">
+<span>DEC 01</span><span>DEC 07</span><span>DEC 14</span><span>DEC 21</span><span>DEC 28</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h2 class="text-lg font-bold mb-6">Agent Income Stats</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl hover:ring-1 ring-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg flex items-center justify-center">
+<span class="material-icons-round">psychology</span>
+</div>
+<div>
+<h4 class="font-semibold">Agent A (Contract-based)</h4>
+<p class="text-xs text-slate-500">Arbitrage Trading Specialist</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="font-bold">$840.00</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider">Earnings</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400">
+                                    Disputing
+                                </span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl hover:ring-1 ring-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-lg flex items-center justify-center">
+<span class="material-icons-round">bolt</span>
+</div>
+<div>
+<h4 class="font-semibold">Agent B (Algorithm-Enhanced)</h4>
+<p class="text-xs text-slate-500">Liquidity Provision Bot</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="font-bold">$1,420.50</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider">Earnings</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                    Settled
+                                </span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl hover:ring-1 ring-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg flex items-center justify-center">
+<span class="material-icons-round">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-semibold">Agent C (Multi-Chain)</h4>
+<p class="text-xs text-slate-500">Yield Aggregator</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="font-bold">$310.20</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider">Earnings</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                                    Pending
+                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold">Daily Revenue Date</h3>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-400"><span class="material-icons-round text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-400"><span class="material-icons-round text-sm">chevron_right</span></button>
+</div>
+</div>
+<div class="text-center mb-4">
+<span class="text-sm font-semibold">December 2025</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-slate-400 uppercase mb-2">
+<span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm">
+<span class="p-2 text-slate-300 dark:text-slate-700">30</span>
+<span class="p-2">1</span><span class="p-2">2</span><span class="p-2">3</span><span class="p-2">4</span><span class="p-2">5</span><span class="p-2">6</span>
+<span class="p-2">7</span><span class="p-2">8</span><span class="p-2">9</span><span class="p-2">10</span><span class="p-2">11</span><span class="p-2">12</span><span class="p-2">13</span>
+<span class="p-2">14</span><span class="p-2">15</span><span class="p-2">16</span><span class="p-2">17</span><span class="p-2">18</span><span class="p-2">19</span><span class="p-2">20</span>
+<span class="p-2">21</span><span class="p-2">22</span><span class="p-2">23</span><span class="p-2">24</span><span class="p-2">25</span><span class="p-2">26</span><span class="p-2">27</span>
+<button class="p-2 bg-primary text-white rounded-lg font-bold">28</button>
+<span class="p-2">29</span><span class="p-2">30</span><span class="p-2">31</span>
+<span class="p-2 text-slate-300 dark:text-slate-700">1</span><span class="p-2 text-slate-300 dark:text-slate-700">2</span><span class="p-2 text-slate-300 dark:text-slate-700">3</span>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 text-xs font-medium bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">Cancel</button>
+<button class="flex-1 py-2 text-xs font-medium bg-primary text-white rounded-lg hover:opacity-90">OK</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="font-bold mb-6">Revenue Distribution</h3>
+<div class="relative h-48 flex items-center justify-center">
+<div class="w-32 h-32 rounded-full border-[16px] border-slate-100 dark:border-slate-800 relative">
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-primary border-t-transparent border-r-transparent border-l-transparent rotate-[45deg]"></div>
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-green-500 border-b-transparent border-r-transparent border-l-transparent rotate-[180deg]"></div>
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-purple-500 border-t-transparent border-b-transparent border-r-transparent rotate-[0deg]"></div>
+</div>
+<div class="absolute text-center">
+<span class="text-xs text-slate-400 block">Total</span>
+<span class="font-bold">$2.5k</span>
+</div>
+</div>
+<div class="mt-6 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-slate-600 dark:text-slate-400">Agent A</span>
+</div>
+<span class="font-semibold">33%</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-slate-600 dark:text-slate-400">Agent B</span>
+</div>
+<span class="font-semibold">55%</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-purple-500"></div>
+<span class="text-slate-600 dark:text-slate-400">Agent C</span>
+</div>
+<span class="font-semibold">12%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center p-4 bg-primary text-white rounded-2xl hover:opacity-90 transition-opacity">
+<span class="material-icons-round mb-2">add</span>
+<span class="text-xs font-bold">Withdraw</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-icons-round mb-2 text-primary">history</span>
+<span class="text-xs font-bold">History</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-200 dark:border-slate-800 mt-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-slate-500">
+                © 2025 Aladdin Protocol DAO. All rights reserved.
+            </div>
+<div class="flex items-center gap-6 text-sm font-medium text-slate-500">
+<a class="hover:text-primary" href="#">Docs</a>
+<a class="hover:text-primary" href="#">Terms</a>
+<a class="hover:text-primary" href="#">Github</a>
+<a class="hover:text-primary" href="#">Discord</a>
+</div>
+</div>
+</footer>
+
+</body></html>

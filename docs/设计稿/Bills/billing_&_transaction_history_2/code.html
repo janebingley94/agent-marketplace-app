@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Service Invoice - Aladdin Protocol</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #6366f1;
+            --background-light: #f8fafc;
+            --background-dark: #0f172a;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1",
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-[#f8fafc] dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+<nav class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between relative">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<span class="font-bold text-lg tracking-tight hidden lg:block">Aladdin Protocol</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center space-x-2">
+<a class="px-3 py-5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="px-3 py-5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Agent</a>
+<a class="px-3 py-5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Wallet</a>
+<a class="px-3 py-5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="px-3 py-5 text-sm font-medium text-primary border-b-2 border-primary relative top-[1px]" href="#">Bills</a>
+<a class="px-3 py-5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">DAO</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-indigo-400 border border-white/20"></div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-2">
+<a class="hover:text-primary" href="#">Billing</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">Create Invoice</span>
+</nav>
+<h1 class="text-3xl font-bold tracking-tight">Create Service Invoice</h1>
+<p class="text-slate-500 dark:text-slate-400">Generate a professional on-chain billing record for agent services.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all border border-slate-200 dark:border-slate-700">
+                Save Draft
+            </button>
+<button class="px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">send</span>
+                Send &amp; Log
+            </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-7 space-y-6">
+<section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                    General Details
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Recipient Details</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-lg">account_balance_wallet</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary text-sm" placeholder="Wallet Address (0x...) or User ID" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Agent Service Selection</label>
+<select class="w-full py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary text-sm">
+<option>WeatherAgent Pro (Owned)</option>
+<option>GPT-4 Turbo Node (Subscribed)</option>
+<option>TradingBot Alpha (Custom)</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Service Period</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-lg">calendar_month</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary text-sm" placeholder="Oct 1 - Oct 31, 2023" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Payment Terms</label>
+<select class="w-full py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary text-sm">
+<option>Due on Receipt</option>
+<option>Net 15</option>
+<option>Net 30</option>
+<option>Net 60</option>
+</select>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">list_alt</span>
+                        Service Line Items
+                    </h2>
+<button class="text-sm text-primary font-semibold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-base">add_circle</span>
+                        Add Item
+                    </button>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-12 gap-4 items-end bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl relative group">
+<div class="col-span-12 md:col-span-5 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Description</label>
+<input class="w-full py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="text" value="API Endpoint Consumption - Tier 1"/>
+</div>
+<div class="col-span-4 md:col-span-2 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Quantity</label>
+<input class="w-full py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="number" value="1"/>
+</div>
+<div class="col-span-4 md:col-span-3 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Unit Price</label>
+<div class="relative">
+<input class="w-full py-2 pl-4 pr-12 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="text" value="250.00"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400">USDT</span>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 space-y-2 text-right">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total</label>
+<div class="py-2 text-sm font-semibold">$250.00</div>
+</div>
+<button class="absolute -right-2 -top-2 bg-rose-100 text-rose-600 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="grid grid-cols-12 gap-4 items-end bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl relative group">
+<div class="col-span-12 md:col-span-5 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Description</label>
+<input class="w-full py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="text" value="Premium Support Bundle (Monthly)"/>
+</div>
+<div class="col-span-4 md:col-span-2 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Quantity</label>
+<input class="w-full py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="number" value="1"/>
+</div>
+<div class="col-span-4 md:col-span-3 space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Unit Price</label>
+<div class="relative">
+<input class="w-full py-2 pl-4 pr-12 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary text-sm" type="text" value="50.00"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400">USDT</span>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 space-y-2 text-right">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total</label>
+<div class="py-2 text-sm font-semibold">$50.00</div>
+</div>
+<button class="absolute -right-2 -top-2 bg-rose-100 text-rose-600 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+                    Tax &amp; Compliance
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tax / VAT (15%)</label>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<input class="w-full py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary text-sm" placeholder="Tax Registration Number (Optional)" type="text"/>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Preview on Blockchain</label>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="text-xs text-slate-500 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-amber-500">info</span>
+                            Metadata will be hashed and stored on the protocol.
+                        </div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-5 sticky top-24">
+<div class="mb-3 text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Live Preview
+            </div>
+<div class="bg-white rounded-none shadow-2xl overflow-hidden border border-slate-100 aspect-[1/1.4] transform scale-100 origin-top flex flex-col">
+<div class="p-8 flex-1">
+<div class="flex justify-between items-start mb-12">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<div class="w-6 h-6 bg-slate-900 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]">auto_awesome</span>
+</div>
+<span class="font-bold text-sm tracking-tight">Aladdin Protocol</span>
+</div>
+<p class="text-[10px] text-slate-400">Decentralized Agent Billing</p>
+</div>
+<div class="text-right">
+<h3 class="text-2xl font-light text-slate-900 uppercase tracking-tighter">Invoice</h3>
+<p class="text-[10px] text-slate-400 mt-1">#INV-2023-0042</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-12">
+<div>
+<h4 class="text-[10px] font-bold text-slate-400 uppercase mb-2">From (Provider)</h4>
+<div class="text-xs font-semibold text-slate-800">WeatherAgent Pro Node</div>
+<div class="text-[10px] text-slate-500 mt-1">0x8812...E092</div>
+<div class="text-[10px] text-slate-500">Protocol Fee Account: A-11</div>
+</div>
+<div>
+<h4 class="text-[10px] font-bold text-slate-400 uppercase mb-2">Bill To (Client)</h4>
+<div class="text-xs font-semibold text-slate-800">Entity: User-94021</div>
+<div class="text-[10px] text-slate-500 mt-1">0x4122...B392</div>
+<div class="text-[10px] text-slate-500">Payment: Net 30</div>
+</div>
+</div>
+<div class="flex gap-12 mb-10 border-b border-slate-100 pb-4">
+<div>
+<div class="text-[9px] font-bold text-slate-400 uppercase mb-1">Issue Date</div>
+<div class="text-[10px] font-medium text-slate-800">Oct 24, 2023</div>
+</div>
+<div>
+<div class="text-[9px] font-bold text-slate-400 uppercase mb-1">Service Period</div>
+<div class="text-[10px] font-medium text-slate-800">Oct 1 - Oct 31, 2023</div>
+</div>
+</div>
+<div class="mb-10">
+<div class="grid grid-cols-12 border-b border-slate-900 pb-2 mb-3">
+<div class="col-span-7 text-[9px] font-bold uppercase text-slate-400">Service Description</div>
+<div class="col-span-1 text-[9px] font-bold uppercase text-slate-400 text-center">Qty</div>
+<div class="col-span-2 text-[9px] font-bold uppercase text-slate-400 text-right">Price</div>
+<div class="col-span-2 text-[9px] font-bold uppercase text-slate-400 text-right">Amount</div>
+</div>
+<div class="space-y-3">
+<div class="grid grid-cols-12 items-start border-b border-slate-50 pb-2">
+<div class="col-span-7">
+<div class="text-[11px] font-medium text-slate-800">API Endpoint Consumption - Tier 1</div>
+<div class="text-[9px] text-slate-400">Agent access &amp; request handling</div>
+</div>
+<div class="col-span-1 text-[11px] text-slate-800 text-center">1</div>
+<div class="col-span-2 text-[11px] text-slate-800 text-right">250.00</div>
+<div class="col-span-2 text-[11px] font-semibold text-slate-800 text-right">250.00</div>
+</div>
+<div class="grid grid-cols-12 items-start border-b border-slate-50 pb-2">
+<div class="col-span-7">
+<div class="text-[11px] font-medium text-slate-800">Premium Support Bundle</div>
+<div class="text-[9px] text-slate-400">24/7 dedicated node monitoring</div>
+</div>
+<div class="col-span-1 text-[11px] text-slate-800 text-center">1</div>
+<div class="col-span-2 text-[11px] text-slate-800 text-right">50.00</div>
+<div class="col-span-2 text-[11px] font-semibold text-slate-800 text-right">50.00</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end">
+<div class="w-48 space-y-2">
+<div class="flex justify-between text-[11px]">
+<span class="text-slate-400">Subtotal</span>
+<span class="font-medium text-slate-800">300.00 USDT</span>
+</div>
+<div class="flex justify-between text-[11px]">
+<span class="text-slate-400">VAT (15%)</span>
+<span class="font-medium text-slate-800">45.00 USDT</span>
+</div>
+<div class="flex justify-between text-[11px] pt-2 border-t border-slate-100">
+<span class="font-bold text-slate-900">Total Amount</span>
+<span class="font-bold text-primary">345.00 USDT</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 p-6 flex justify-between items-center mt-auto">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[8px] font-bold text-slate-400 uppercase">On-chain Status</span>
+<span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-1">
+<span class="w-1 h-1 bg-emerald-500 rounded-full"></span>
+                                Ready to Sign
+                            </span>
+</div>
+<div class="flex flex-col">
+<span class="text-[8px] font-bold text-slate-400 uppercase">Settlement</span>
+<span class="text-[10px] font-semibold text-slate-800">Layer-2 Optimized</span>
+</div>
+</div>
+<div class="text-[8px] text-slate-400 text-right leading-tight">
+                        This is an algorithmic billing document.<br/>Powered by Aladdin Protocol.
+                    </div>
+</div>
+</div>
+<div class="mt-4 flex gap-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg">print</span>
+                    Print PDF
+                </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+                    Share Link
+                </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-10 bg-white dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-slate-300 dark:bg-slate-700 rounded-md"></div>
+<span class="text-sm font-medium text-slate-500">© 2023 Aladdin Protocol. Financial Services &amp; AI Governance.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Audit Report</a>
+</div>
+</div>
+</footer>
+
+</body></html>

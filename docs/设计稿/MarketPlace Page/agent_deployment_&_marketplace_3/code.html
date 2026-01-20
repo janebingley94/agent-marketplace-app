@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Performance: OracleInsights V4 | Aladdin Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1", // Indigo 500
+                        "background-light": "#f8fafc", // Slate 50
+                        "background-dark": "#0f172a", // Slate 900
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            @apply backdrop-blur-md border border-white/20;
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            @apply border-white/10;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-all font-medium flex items-center;
+        }
+        .nav-link-active {
+            @apply px-4 py-2 text-primary rounded-lg font-semibold relative flex items-center after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:right-0 after:h-0.5 after:bg-primary;
+        }
+        .tab-active {
+            @apply border-b-2 border-primary text-primary font-bold;
+        }
+        .tab-inactive {
+            @apply border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all;
+        }
+        .chart-container {
+            @apply relative w-full h-48 flex items-end gap-1;
+        }
+        .heatmap-cell {
+            @apply w-full aspect-square rounded-sm;
+        }
+        .lvl-0 { @apply bg-slate-100 dark:bg-slate-800; }
+        .lvl-1 { @apply bg-indigo-200 dark:bg-indigo-900/40; }
+        .lvl-2 { @apply bg-indigo-400 dark:bg-indigo-700/60; }
+        .lvl-3 { @apply bg-indigo-600 dark:bg-indigo-500; }
+        .lvl-4 { @apply bg-primary; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<header class="fixed top-0 left-0 right-0 h-20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 z-50 px-6 lg:px-10">
+<div class="max-w-7xl mx-auto h-full flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Aladdin</span>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link-active" href="#">Marketplace</a>
+<a class="nav-link" href="#">Agent</a>
+<a class="nav-link" href="#">Wallet</a>
+<a class="nav-link" href="#">Dashboard</a>
+<a class="nav-link" href="#">Bills</a>
+<a class="nav-link" href="#">DAO</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-primary/20 cursor-pointer overflow-hidden">
+<img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTYcMSEKRTyI-KpxODuf-F6bX71KeTBXW4rBpDI4dWMNNbwQwBK4P8CPm5yGzi__CU2Q8uHupvzwbUWUAUYdSlNvj_T2UCDve2cgRcU5A27XLlSnaXYjmVhCr-B4my9YpjANgLGdsFoiSs2gE7vXBiKaTL56CtToykyE-AObNaGlyzdq7yure_MZwCW16YiFwwpTwegSyluV_KNVJev4Qr7hQUunNn0R9s3o-Agfcs7bjbKTD6GaDNO73znZ-qfUOk12jk2TpXqw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-12 px-6 lg:px-10 max-w-7xl mx-auto">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors mb-8 group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        Back to Marketplace
+    </a>
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 md:w-24 md:h-24 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+<span class="material-symbols-outlined text-5xl">query_stats</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-3xl font-bold">OracleInsights V4</h1>
+<span class="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded">Live</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium">by <span class="text-primary cursor-pointer hover:underline">@ChainNexus</span></p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex-1 md:flex-none px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    Lease Agent
+                </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8">
+<div class="border-b border-slate-200 dark:border-slate-700 mb-8 overflow-x-auto">
+<nav class="flex gap-8 min-w-max">
+<button class="pb-4 px-1 tab-inactive text-sm">Overview</button>
+<button class="pb-4 px-1 tab-active text-sm">Performance</button>
+<button class="pb-4 px-1 tab-inactive text-sm">Technical Specs</button>
+</nav>
+</div>
+<div class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-bold text-slate-800 dark:text-slate-100">Success Rate</h3>
+<p class="text-xs text-slate-500">30-day completion &amp; uptime</p>
+</div>
+<span class="text-emerald-500 font-bold">99.92%</span>
+</div>
+<div class="chart-container items-end">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 400 100">
+<path d="M0 80 Q 50 70 100 75 T 200 60 T 300 65 T 400 50" fill="none" stroke="#6366f1" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 80 Q 50 70 100 75 T 200 60 T 300 65 T 400 50 V 100 H 0 Z" fill="url(#gradient-success)" opacity="0.1"></path>
+<defs>
+<linearGradient id="gradient-success" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#6366f1"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-slate-400 font-bold uppercase">
+<span>30 Days ago</span>
+<span>Today</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-bold text-slate-800 dark:text-slate-100">Average Latency</h3>
+<p class="text-xs text-slate-500">Response speed (ms)</p>
+</div>
+<span class="text-primary font-bold">42ms</span>
+</div>
+<div class="chart-container">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 400 100">
+<path d="M0 40 L 40 45 L 80 35 L 120 40 L 160 30 L 200 50 L 240 40 L 280 45 L 320 35 L 360 30 L 400 25" fill="none" stroke="#6366f1" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-slate-400 font-bold uppercase">
+<span>Peak: 58ms</span>
+<span>Low: 25ms</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-bold text-slate-800 dark:text-slate-100">Daily Revenue</h3>
+<p class="text-xs text-slate-500">Creator earnings generated</p>
+</div>
+<div class="text-right">
+<span class="text-xl font-bold">1,842 USDT</span>
+<p class="text-[10px] text-emerald-500 font-bold">+12% vs yesterday</p>
+</div>
+</div>
+<div class="flex items-end justify-between gap-2 h-40">
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[40%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[55%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[45%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[70%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[65%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-indigo-100 dark:bg-indigo-900/30 rounded-t-sm h-[85%] hover:bg-primary transition-colors"></div>
+<div class="w-full bg-primary rounded-t-sm h-[95%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-slate-400 font-bold uppercase">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<section>
+<h2 class="text-xl font-bold mb-4">Historical Load</h2>
+<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
+<div class="grid grid-cols-24 gap-1 mb-4">
+<div class="flex flex-col gap-1 pr-4">
+<span class="text-[10px] text-slate-400 font-bold h-4">Mon</span>
+<span class="text-[10px] text-slate-400 font-bold h-4">Wed</span>
+<span class="text-[10px] text-slate-400 font-bold h-4">Fri</span>
+</div>
+<div class="col-span-23 grid grid-cols-24 gap-1">
+<div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div>
+<div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div>
+<div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-0"></div><div class="heatmap-cell lvl-1"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-4"></div><div class="heatmap-cell lvl-3"></div><div class="heatmap-cell lvl-2"></div><div class="heatmap-cell lvl-1"></div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-6">
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-slate-400 font-bold uppercase">Less Load</span>
+<div class="flex gap-1">
+<div class="w-3 h-3 lvl-0 rounded-sm"></div>
+<div class="w-3 h-3 lvl-1 rounded-sm"></div>
+<div class="w-3 h-3 lvl-2 rounded-sm"></div>
+<div class="w-3 h-3 lvl-3 rounded-sm"></div>
+<div class="w-3 h-3 lvl-4 rounded-sm"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">Peak Load</span>
+</div>
+<span class="text-xs text-slate-500 font-medium italic">Data normalized by calls per minute across global clusters</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="lg:col-span-4">
+<aside class="sticky top-28 space-y-6">
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Pricing Model</h3>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-bold">0.45</span>
+<span class="text-slate-500 font-medium">USDT / call</span>
+</div>
+<p class="text-xs text-slate-400 mb-6">Pay-as-you-go. Volume discounts automated via smart contract for 100k+ calls/mo.</p>
+<div class="space-y-3 pt-6 border-t border-slate-100 dark:border-slate-700">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Service Fee</span>
+<span class="font-medium">5%</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">SLA Guarantee</span>
+<span class="font-medium text-emerald-500">99.9%</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Total Revenue</h3>
+<div class="space-y-4">
+<div>
+<p class="text-xs text-slate-500 mb-1">Lifetime Earnings</p>
+<div class="flex items-center justify-between">
+<span class="text-2xl font-bold">482,910 USDT</span>
+<span class="text-xs text-emerald-500 font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 14%
+                                </span>
+</div>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
+<span>Top 5% of Marketplace</span>
+<span>Rank: #12</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Verified Performance</h4>
+<p class="text-xs text-slate-500">Audited by Aladdin Protocol</p>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+<style type="text/tailwindcss">
+    @layer utilities {
+        .grid-cols-24 {
+            grid-template-columns: repeat(24, minmax(0, 1fr));
+        }
+        .col-span-23 {
+            grid-column: span 23 / span 23;
+        }
+    }
+</style>
+
+</body></html>

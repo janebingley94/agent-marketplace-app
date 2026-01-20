@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DAO Case Details | Aladdin Protocol</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6366f1",
+              "background-light": "#f8fafc",
+              "background-dark": "#0f172a",
+              "card-light": "#ffffff",
+              "card-dark": "#1e293b",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.75rem",
+              'xl': '1rem',
+              '2xl': '1.5rem',
+            },
+          },
+        },
+      };
+    </script>
+<style type="text/tailwindcss">
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+<nav class="sticky top-0 z-50 glass-panel px-6">
+<div class="max-w-7xl mx-auto flex items-center h-16 relative">
+<div class="flex items-center space-x-2 absolute left-0">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-icons-round text-white text-lg">auto_awesome</span>
+</div>
+<span class="text-lg font-extrabold font-display tracking-tight hidden lg:block">ALADDIN <span class="text-primary">PROTOCOL</span></span>
+</div>
+<div class="flex-1 flex justify-center">
+<div class="flex items-center space-x-1">
+<a class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Marketplace</a>
+<a class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Agent</a>
+<a class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Wallet</a>
+<a class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Dashboard</a>
+<a class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Bills</a>
+<div class="relative flex items-center h-full">
+<a class="px-4 py-2 text-sm font-semibold text-primary transition-colors" href="#">DAO</a>
+<div class="absolute bottom-[-18px] left-0 w-full h-0.5 bg-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-4 absolute right-0">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round dark:hidden">dark_mode</span>
+<span class="material-icons-round hidden dark:block">light_mode</span>
+</button>
+<div class="hidden sm:flex items-center space-x-3 bg-slate-100 dark:bg-slate-800 px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-xs font-bold font-display">0x71C...492</span>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
+<div>
+<div class="flex items-center space-x-2 text-slate-500 mb-2 cursor-pointer hover:text-primary transition-colors">
+<span class="material-icons-round text-sm">arrow_back</span>
+<span class="text-sm font-medium">Back to Governance</span>
+</div>
+<h1 class="text-3xl font-extrabold font-display mb-2">Case #8492-X: Smart Contract Parameter Breach</h1>
+<p class="text-slate-500 dark:text-slate-400">Review technical artifacts, evidence, and cast your vote on the resolution.</p>
+</div>
+<div class="flex items-center bg-card-light dark:bg-card-dark p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden group">
+<div class="relative z-10 flex items-center space-x-4">
+<div class="relative">
+<img alt="3D Treasury Icon" class="w-16 h-16 object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGPlASQ7MihyySkdgesaH-24-8wUJLmPjhVsQ8mX4cMb_xWHuyfSOGL0rHsLIfzi1rf0v5_uBon2fPwX9i2aF0Y1EJ6__0VHe4qpzHmnLG8LbbMuYpy_9HayTgoAZkXJCKy5m_RG92YJktz2ov2BwUM6uGZf8pO76RYG9tJKyc94tJEW7wQTWxy3pgtAgeW-qlCTsziyS7YynxvDLJMzDE6_EggIwcXJp4wexfjvH4KItGYm-Cig_1nkyh83BPFd8ssR1CmrVkWg"/>
+</div>
+<div>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Treasury Balance</span>
+<div class="text-2xl font-bold font-display">12,450.85 ETH</div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="font-bold mb-4 flex items-center text-lg">
+<span class="material-icons-round text-primary mr-2">description</span>
+                        Case Description
+                    </h3>
+<div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            The dispute arises from "Agent A" failing to deliver the specified technical parameters for the scheduled smart contract deployment. The user claims the Agent executed 15% fewer operations than the agreed SLA. 
+                            <br/><br/>
+                            Technical logs show a mismatch in the "payment_data" hash during the final settlement phase. Both parties have submitted their interaction logs for community review.
+                        </p>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="font-bold mb-4 flex items-center text-lg">
+<span class="material-icons-round text-primary mr-2">analytics</span>
+                        Interaction Artifacts
+                    </h3>
+<div class="space-y-3">
+<div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center space-x-3">
+<span class="material-icons-round text-primary">terminal</span>
+<div>
+<div class="font-bold text-sm">Agent Logs.json</div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Technical Log • 2.4 MB</div>
+</div>
+</div>
+<div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center space-x-3">
+<span class="material-icons-round text-primary">description</span>
+<div>
+<div class="font-bold text-sm">SLA Protocol</div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Protocol Definition</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="font-bold mb-4 flex items-center text-lg text-slate-900 dark:text-white">
+<span class="material-icons-round text-primary mr-2">attachment</span>
+                        Evidence Links
+                    </h3>
+<div class="space-y-2">
+<a class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Transaction Hash Trace</span>
+<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors text-sm">open_in_new</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Deployment Metadata</span>
+<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-8">
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold font-display">Voting Progress</h3>
+<span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 rounded-full text-xs font-bold uppercase tracking-wide flex items-center">
+<span class="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse"></span>
+                        Active
+                    </span>
+</div>
+<div class="flex justify-between items-center mb-6">
+<div class="text-center">
+<div class="text-3xl font-extrabold text-red-500 mb-1">38%</div>
+<div class="text-xs font-bold text-slate-400 uppercase tracking-widest">Disagree</div>
+</div>
+<div class="text-center bg-slate-100 dark:bg-slate-800 px-6 py-2 rounded-2xl">
+<div class="text-sm font-bold text-slate-500 mb-1">ENDS IN</div>
+<div class="text-xl font-bold font-mono">04h 22m 15s</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-extrabold text-emerald-500 mb-1">62%</div>
+<div class="text-xs font-bold text-slate-400 uppercase tracking-widest">Agree</div>
+</div>
+</div>
+<div class="h-6 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden flex shadow-inner">
+<div class="bg-red-500 h-full transition-all duration-1000" style="width: 38%"></div>
+<div class="bg-emerald-500 h-full transition-all duration-1000" style="width: 62%"></div>
+</div>
+<div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-sm text-slate-500 font-medium">
+<span>Minimum Quorum: 50,000 ALD</span>
+<span>Current: 32,450 ALD (64%)</span>
+</div>
+<div class="mt-2 h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 64%"></div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border-2 border-primary/20 dark:border-primary/30 p-8 shadow-xl shadow-primary/5">
+<h3 class="text-lg font-bold mb-6 flex items-center">
+<span class="material-icons-round text-primary mr-2">how_to_vote</span>
+                    Cast Your Vote
+                </h3>
+<p class="text-sm text-slate-500 mb-8">Select your stance on this case. Voting requires holding ALD tokens in your connected wallet.</p>
+<div class="grid grid-cols-2 gap-4">
+<button class="group relative overflow-hidden bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-700 dark:text-slate-300 py-6 rounded-2xl font-bold transition-all border border-transparent hover:border-red-200 dark:hover:border-red-900/40">
+<div class="flex flex-col items-center space-y-2">
+<span class="material-icons-round text-3xl group-hover:scale-110 transition-transform">thumb_down</span>
+<span class="text-sm">Disagree</span>
+</div>
+</button>
+<button class="group relative overflow-hidden bg-primary text-white py-6 rounded-2xl font-bold shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all hover:-translate-y-0.5">
+<div class="flex flex-col items-center space-y-2">
+<span class="material-icons-round text-3xl group-hover:scale-110 transition-transform">thumb_up</span>
+<span class="text-sm">Agree</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3">
+<div class="bg-card-light dark:bg-card-dark rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col h-[700px] shadow-sm overflow-hidden sticky top-24">
+<div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="flex -space-x-2">
+<img alt="avatar" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUtEcy2z0HZGt8RE8_vhzP4kJnyXpgJ3hQvn_nlBNBoKoW0B0i4SkHNoxSrLlZPGeni9Hp3oBBYmc8ZZbz1PA2jF7JXfNfYswdTyFdQ53xmZu71_z4M-dPWBSihrsOMELCgCHtl3lTMgdfRfDs6ojxZNRXuv2nipkDu6H3PK2TARj20kSVhTGI3xJTqJM6zuGd78hJNacssiRVEB0j9j2gv2DVy-Pp1_SczecOmt0T19S9Tcz07rpqMDTJTQqyz_hOeJt7pDgISA"/>
+<img alt="avatar" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZnptc-2o2VkXiA0XY_p_nEE_1D1tB93p_LbHlIqWZ4TIOQZEgSC8PYN0j5JqmXysTxefJMHhP3THGFKZ1knkZdgW_DriLldQuS9cMo3ANC_DitDzJZYqdrpPxz-8QdIEfmDEHD6luscIz1_AYpw5n6-ZNLu5xuq2huTZe5bV_ZF5nLWlgaW14vLnWiOIDFlm67YNQgBY605NGwBqwkalfXP5Gygysl56Ttppg-I-VyP_J5Mc-u7dyZnkDL5tGQ2kdn4ejEGk1Ig"/>
+<img alt="avatar" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALZir3SabZq2iey3fKYFS3dfaH-iZF2BUhoW29oEYQ_PX048_QhsYfHMYfggnSvn-D1Z_EQJdNnePXTxIUiwBmgeI7i67G9hNVbCgbIv_929FGQ8ptNNxKHTYjAKHMpqmrVJmmYT6XvZDqwgSFWduBKQYSneoOi8dwPbEife88j0U__EHTK_G-vcnrcjtfubc_UxYjlODrNGhmhs_QdwJiujFDqNm7FefKGp_Oxhs4eGVINp5ocFj4NOgKododTzdpwicuB28sPw"/>
+</div>
+<div class="font-bold text-sm">Community Chat</div>
+</div>
+<div class="flex items-center space-x-1 text-xs text-green-500 font-bold">
+<span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+<span>412 ONLINE</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-5 space-y-6">
+<div class="flex flex-col space-y-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-bold text-primary">CyberPunk_DAO</span>
+<span class="text-[10px] text-slate-400">14:02</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none text-sm inline-block max-w-[90%]">
+                            Look at the logs at line 204. The API call failed but the Agent marked it as success. This is clearly a breach.
+                        </div>
+</div>
+<div class="flex flex-col space-y-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-bold text-amber-500">Validator_Eve</span>
+<span class="text-[10px] text-slate-400">14:05</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none text-sm inline-block max-w-[90%]">
+                            I agree with CyberPunk. Voting "Disagree" to penalize the deposit.
+                        </div>
+</div>
+<div class="flex flex-col items-end space-y-2">
+<div class="flex items-center space-x-2">
+<span class="text-[10px] text-slate-400">14:08</span>
+<span class="text-xs font-bold text-slate-600 dark:text-slate-400">You</span>
+</div>
+<div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none text-sm inline-block max-w-[90%]">
+                            Checking the treasury impact if this passes.
+                        </div>
+</div>
+<div class="flex flex-col space-y-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-bold text-indigo-500">Dev_Master</span>
+<span class="text-[10px] text-slate-400">14:10</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-2xl rounded-tl-none max-w-[90%]">
+<img alt="Data Chart" class="rounded-xl mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPgpizbbVzC_RBASwPPTbz7Qgi07AzTR2gF3z5T-Wa8gcuDoF8mZsWuqCfnkagIXx56mG-FB-sYUIhSADpp2i8kgK2ylL3NdI_igVX1LCNR6nptz0B4ETF-1KiElOkotsZY6Tyf3mJVUOQJIat3v84Xm-Z7L-mE0uDa8-dIU8CeJre201SQwiBTwZRSfICsUgfXt9XWWBKxmoGWL_2jmxeoHl4D9GvcYvPMUk6XlDyCiOFyilcLYJXomY9LJ8m7rOT33tTPgQ2AQ"/>
+<p class="text-xs text-slate-500 p-1">Comparing SLA metrics across all instances of Agent A.</p>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center space-x-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-2 pl-4">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-2" placeholder="Share your thoughts..." type="text"/>
+<button class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+<span class="material-icons-round text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-6 right-6 z-50">
+<div class="flex items-center space-x-4 glass-panel px-6 py-3 rounded-2xl shadow-2xl">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<span class="material-icons-round text-white text-sm">campaign</span>
+</div>
+<div class="text-sm">
+<span class="font-bold">Protocol Update:</span> Governance v2.1 live.
+        </div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-icons-round text-sm">close</span>
+</button>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Deployment | Aladdin Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<nav class="sticky top-0 w-full bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 z-50">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center">
+<div class="flex items-center gap-3 w-1/4">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<span class="font-bold text-xl tracking-tight hidden sm:block">Aladdin</span>
+</div>
+<div class="flex-1 flex justify-center">
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="text-sm font-bold text-primary relative h-20 flex items-center after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary" href="#">Agent</a>
+<a class="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Wallet</a>
+<a class="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Bills</a>
+<a class="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">DAO</a>
+</div>
+</div>
+<div class="flex items-center justify-end gap-4 w-1/4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto p-6 lg:p-10">
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+<div>
+<h1 class="text-3xl font-bold">Agent Deployment</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Configure and launch your AI Agent to the marketplace.</p>
+</div>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+<div class="xl:col-span-7 space-y-8">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-indigo-800 p-8 text-white">
+<div class="absolute -right-10 -bottom-10 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[200px]">smart_toy</span>
+</div>
+<div class="relative flex items-center gap-6">
+<div class="w-24 h-24 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center border border-white/30">
+<span class="material-symbols-outlined text-5xl">face</span>
+</div>
+<div>
+<span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold mb-2 inline-block">PREVIEW MODE</span>
+<h2 class="text-2xl font-bold" id="preview-name">New Agent Project</h2>
+<p class="text-white/80" id="preview-desc">Enter description to see preview...</p>
+</div>
+</div>
+</div>
+<section class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span> Basic Information
+                </h3>
+<div class="grid grid-cols-1 gap-6">
+<div>
+<label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Agent Name</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary" placeholder="e.g. DataOracle-V1" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Agent Address (Contract or API)</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary" placeholder="0x... or https://api.agent.io" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">Description</label>
+<textarea class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary" placeholder="Describe your agent's capabilities..." rows="3"></textarea>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">settings</span> Model &amp; Execution
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<button class="flex flex-col p-5 border-2 border-primary bg-primary/5 rounded-2xl text-left transition-all">
+<span class="material-symbols-outlined text-primary mb-3">fact_check</span>
+<span class="font-bold">Result-based Contract</span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-1">Payment released upon verified output.</span>
+</button>
+<button class="flex flex-col p-5 border-2 border-transparent bg-slate-50 dark:bg-slate-900 rounded-2xl text-left hover:border-slate-300 transition-all">
+<span class="material-symbols-outlined text-slate-400 mb-3">terminal</span>
+<span class="font-bold">Algorithmic-based</span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-1">Fee calculated by computational cycles.</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="text-sm">Third-party verification for automated settlement</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+</div>
+<div class="xl:col-span-5 space-y-8">
+<section class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-lg font-semibold mb-6">Execution &amp; Privacy</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Private Mode</p>
+<p class="text-xs text-slate-500 max-w-[200px]">Requires pre-authorized payment accounts from counterparties.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Human Incentive Rewards</p>
+<p class="text-xs text-slate-500 max-w-[200px]">Enable additional rewards for high-quality human verification.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">DAO Intervention</p>
+<p class="text-xs text-slate-500 max-w-[200px]">Allow DAO to intervene in case of contract disputes.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Fixed Call Fee (USDT)</label>
+<div class="flex gap-4">
+<div class="relative flex-1">
+<input class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl pl-4 pr-12 py-3" type="number" value="3.50"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">USDT</span>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span> Financial Settings
+                </h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="text-sm font-medium">Margin Deposit (Collateral)</label>
+<span class="text-xs bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-full">Recommended</span>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-full accent-primary" type="range"/>
+<span class="font-bold whitespace-nowrap">200 USDT</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+<label class="block text-sm font-medium mb-3">Collection Address</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl text-sm" placeholder="0x71C765...f44E" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-3">Tax Configuration</label>
+<div class="flex items-center gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm">Include VAT/Tax</span>
+</label>
+<select class="flex-1 bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl text-sm">
+<option>Select Region...</option>
+<option>North America</option>
+<option>European Union</option>
+<option>APAC</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<div class="flex gap-4">
+<button class="flex-1 py-4 px-6 border border-slate-200 dark:border-slate-700 rounded-2xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    Save Draft
+                </button>
+<button class="flex-[2] py-4 px-6 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all">
+                    Deploy Agent
+                </button>
+</div>
+<div class="text-center">
+<p class="text-xs text-slate-500">
+                    By deploying, you agree to the <a class="text-primary hover:underline" href="#">Aladdin Protocol Terms of Service</a>.
+                </p>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

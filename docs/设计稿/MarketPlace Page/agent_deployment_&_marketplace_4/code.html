@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technical Specs: OracleInsights V4 | Aladdin Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "code-bg": "#1e293b",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            @apply backdrop-blur-md border border-white/20;
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            @apply border-white/10;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-all font-medium flex items-center;
+        }
+        .nav-link-active {
+            @apply px-4 py-2 text-primary rounded-lg font-semibold relative flex items-center after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:right-0 after:h-0.5 after:bg-primary;
+        }
+        .tab-active {
+            @apply border-b-2 border-primary text-primary font-bold;
+        }
+        .tab-inactive {
+            @apply border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all;
+        }
+        .code-block {
+            @apply font-mono text-sm bg-slate-900 text-slate-300 p-6 rounded-xl overflow-x-auto border border-slate-700 relative;
+        }
+        .status-dot {
+            @apply w-2 h-2 rounded-full inline-block mr-2;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<header class="fixed top-0 left-0 right-0 h-20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 z-50 px-6 lg:px-10">
+<div class="max-w-7xl mx-auto h-full flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Aladdin</span>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link-active" href="#">Marketplace</a>
+<a class="nav-link" href="#">Agent</a>
+<a class="nav-link" href="#">Wallet</a>
+<a class="nav-link" href="#">Dashboard</a>
+<a class="nav-link" href="#">Bills</a>
+<a class="nav-link" href="#">DAO</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-primary/20 cursor-pointer overflow-hidden">
+<img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTYcMSEKRTyI-KpxODuf-F6bX71KeTBXW4rBpDI4dWMNNbwQwBK4P8CPm5yGzi__CU2Q8uHupvzwbUWUAUYdSlNvj_T2UCDve2cgRcU5A27XLlSnaXYjmVhCr-B4my9YpjANgLGdsFoiSs2gE7vXBiKaTL56CtToykyE-AObNaGlyzdq7yure_MZwCW16YiFwwpTwegSyluV_KNVJev4Qr7hQUunNn0R9s3o-Agfcs7bjbKTD6GaDNO73znZ-qfUOk12jk2TpXqw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-12 px-6 lg:px-10 max-w-7xl mx-auto">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors mb-8 group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        Back to Marketplace
+    </a>
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 md:w-24 md:h-24 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+<span class="material-symbols-outlined text-5xl">developer_board</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-3xl font-bold">OracleInsights V4</h1>
+<span class="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded">Live</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium">Technical Architecture by <span class="text-primary cursor-pointer hover:underline">@ChainNexus</span></p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex-1 md:flex-none px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    Deploy Instance
+                </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8">
+<div class="border-b border-slate-200 dark:border-slate-700 mb-8 overflow-x-auto">
+<nav class="flex gap-8 min-w-max">
+<button class="pb-4 px-1 tab-inactive text-sm">Overview</button>
+<button class="pb-4 px-1 tab-inactive text-sm">Performance</button>
+<button class="pb-4 px-1 tab-active text-sm">Technical Specs</button>
+</nav>
+</div>
+<div class="space-y-10">
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">extension</span>
+                            Capabilities &amp; Tools
+                        </h2>
+</div>
+<div class="grid gap-4">
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-start gap-4 hover:border-primary/40 transition-colors group">
+<div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary">language</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-bold">Web Search Engine</h4>
+<span class="flex items-center text-[10px] font-bold uppercase tracking-wider text-emerald-500">
+<span class="status-dot bg-emerald-500"></span> Active
+                                    </span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Accesses real-time web data via Brave and Google Search APIs to provide up-to-date market information and news sentiment.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-start gap-4 hover:border-primary/40 transition-colors group">
+<div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary">terminal</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-bold">Python Code Interpreter</h4>
+<span class="flex items-center text-[10px] font-bold uppercase tracking-wider text-emerald-500">
+<span class="status-dot bg-emerald-500"></span> Sandboxed
+                                    </span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Secure execution environment for complex data analysis, chart generation, and algorithmic financial modeling.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-start gap-4 hover:border-primary/40 transition-colors group">
+<div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary">database</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-bold">Database Access (Read-Only)</h4>
+<span class="flex items-center text-[10px] font-bold uppercase tracking-wider text-amber-500">
+<span class="status-dot bg-amber-500"></span> Restricted
+                                    </span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Direct read access to historical price feeds and verified on-chain event logs through Aladdin's data lake.</p>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">api</span>
+                            API Documentation
+                        </h2>
+<span class="text-xs text-slate-400 font-mono">v1.4.2</span>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/30">
+<div class="flex items-center gap-4">
+<span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded uppercase">Post</span>
+<code class="text-sm font-mono font-semibold">/v1/chat/completions</code>
+</div>
+<button class="flex items-center gap-2 text-xs font-bold text-primary hover:text-indigo-700 transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Copy Code
+                            </button>
+</div>
+<div class="p-0">
+<pre class="code-block m-0 rounded-none border-0 text-xs leading-relaxed">{
+  <span class="text-indigo-400">"model"</span>: <span class="text-emerald-400">"oracle-insights-v4"</span>,
+  <span class="text-indigo-400">"messages"</span>: [
+    {
+      <span class="text-indigo-400">"role"</span>: <span class="text-emerald-400">"user"</span>,
+      <span class="text-indigo-400">"content"</span>: <span class="text-emerald-400">"Analyze ETH resistance levels for Q4."</span>
+    }
+  ],
+  <span class="text-indigo-400">"tools"</span>: [<span class="text-emerald-400">"web_search"</span>, <span class="text-emerald-400">"data_viz"</span>],
+  <span class="text-indigo-400">"stream"</span>: <span class="text-amber-400">false</span>,
+  <span class="text-indigo-400">"temperature"</span>: <span class="text-amber-400">0.7</span>
+}</pre>
+</div>
+<div class="p-6 bg-white dark:bg-slate-800">
+<h5 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Request Schema</h5>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="min-w-[120px]">
+<code class="text-xs font-mono text-primary font-bold">messages</code>
+<span class="block text-[10px] text-slate-400 uppercase font-bold">Array</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">REQUIRED. A list of messages comprising the conversation so far.</p>
+</div>
+<div class="flex items-start gap-4">
+<div class="min-w-[120px]">
+<code class="text-xs font-mono text-primary font-bold">temperature</code>
+<span class="block text-[10px] text-slate-400 uppercase font-bold">Float</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">OPTIONAL. Defaults to 1. Sampling temperature between 0 and 2.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="lg:col-span-4">
+<aside class="sticky top-28 space-y-6">
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">hub</span>
+                        Model Environment
+                    </h3>
+<div class="space-y-5">
+<div class="flex justify-between items-center py-3 border-b border-slate-50 dark:border-slate-700/50">
+<span class="text-sm text-slate-500 dark:text-slate-400">Base Model</span>
+<span class="text-sm font-bold bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded">GPT-4o</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-slate-50 dark:border-slate-700/50">
+<span class="text-sm text-slate-500 dark:text-slate-400">Context Window</span>
+<span class="text-sm font-bold">128k tokens</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-slate-50 dark:border-slate-700/50">
+<span class="text-sm text-slate-500 dark:text-slate-400">Knowledge Cutoff</span>
+<span class="text-sm font-bold">Oct 2023</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<span class="text-sm text-slate-500 dark:text-slate-400">Latency Tier</span>
+<span class="text-sm font-bold text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">bolt</span> Ultra-Low
+                            </span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Execution Quotas</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-500">Max Runtime / Call</span>
+<span class="font-bold">180s</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-500">Memory Allocation</span>
+<span class="font-bold">512MB</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[30%]"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-indigo-600 p-6 rounded-2xl shadow-lg shadow-primary/20 text-white">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">cloud_done</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Global Distribution</h4>
+<p class="text-xs text-indigo-100">Multi-region active cluster</p>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-white/10 rounded text-[10px] font-bold">US-EAST-1</span>
+<span class="px-2 py-1 bg-white/10 rounded text-[10px] font-bold">EU-WEST-2</span>
+<span class="px-2 py-1 bg-white/10 rounded text-[10px] font-bold">AP-SOUTH-1</span>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+
+</body></html>

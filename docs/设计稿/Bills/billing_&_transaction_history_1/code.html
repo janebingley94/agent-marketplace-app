@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Billing &amp; Transaction History - Aladdin Protocol</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); }
+        .nav-item {
+            @apply relative px-1 py-4 text-sm font-medium transition-all duration-200;
+        }
+        .nav-item-active {
+            @apply text-primary dark:text-white;
+        }
+        .nav-item-inactive {
+            @apply text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100;
+        }
+        .nav-indicator {
+            @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+<nav class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center relative">
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-white text-xl">auto_awesome</span>
+</div>
+<span class="font-bold text-lg tracking-tight hidden lg:block">Aladdin Protocol</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center space-x-8">
+<a class="nav-item nav-item-inactive" href="#">Marketplace</a>
+<a class="nav-item nav-item-inactive" href="#">Agent</a>
+<a class="nav-item nav-item-inactive" href="#">Wallet</a>
+<a class="nav-item nav-item-inactive" href="#">Dashboard</a>
+<a class="nav-item nav-item-active" href="#">
+                    Bills
+                    <div class="nav-indicator"></div>
+</a>
+<a class="nav-item nav-item-inactive" href="#">DAO</a>
+</div>
+<div class="flex items-center gap-4 flex-shrink-0">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round text-slate-600 dark:text-slate-400">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-indigo-400 cursor-pointer border border-white/20"></div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-bold tracking-tight">Billing &amp; Transactions</h1>
+<p class="mt-2 text-slate-500 dark:text-slate-400">Manage your AI agent service payments, invoices, and on-chain records.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+<span class="material-icons-round text-sm">download</span>
+                Export CSV
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:opacity-90 shadow-lg shadow-primary/20 transition-all">
+<span class="material-icons-round text-sm">add</span>
+                Create Invoice
+            </button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="border-b border-slate-200 dark:border-slate-800 p-1 flex items-center justify-between">
+<div class="flex p-1">
+<button class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm">
+                    As Payee
+                </button>
+<button class="px-6 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">
+                    As Payer
+                </button>
+</div>
+<div class="px-4 flex items-center gap-4">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-icons-round text-slate-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800/50 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search by Agent or ID..." type="text"/>
+</div>
+<select class="bg-slate-50 dark:bg-slate-800/50 border-none rounded-lg text-sm py-2 pr-8 focus:ring-2 focus:ring-primary">
+<option>All Status</option>
+<option>Paid</option>
+<option>Pending</option>
+<option>Disputed</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 dark:bg-slate-800/30 text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">
+<th class="px-6 py-4">Transaction Details</th>
+<th class="px-6 py-4">Agent Entity</th>
+<th class="px-6 py-4 text-center">Dispute Status</th>
+<th class="px-6 py-4">Tax / Fees</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-semibold">2023-10-24 14:32</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">ID: TXN-94021-X</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons-round text-sm">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium">WeatherAgent Pro</span>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-500">Contract-based</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                No Dispute
+                            </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm">5.20 USDT <span class="text-xs text-slate-400">(VAT Paid)</span></span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Tax ID: 882910</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 rounded-md transition-all">
+<span class="material-icons-round text-sm">receipt</span>
+                                    Invoice
+                                </button>
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-all">
+<span class="material-icons-round text-sm">link</span>
+                                    On-chain
+                                </button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-semibold">2023-10-22 09:15</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">ID: TXN-82711-A</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-icons-round text-sm">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium">GPT-4 Turbo Node</span>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-500">Algorithm-Enhanced</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                In Mediation
+                            </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm">12.80 USDT</span>
+<span class="text-xs text-rose-500 dark:text-rose-400 font-medium">Tax Pending</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 rounded-md transition-all">
+<span class="material-icons-round text-sm">receipt</span>
+                                    Invoice
+                                </button>
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-all">
+<span class="material-icons-round text-sm">link</span>
+                                    On-chain
+                                </button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-semibold">2023-10-21 18:45</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">ID: TXN-11029-B</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-icons-round text-sm">auto_graph</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium">TradingBot Alpha</span>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-500">Custom Protocol</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                No Dispute
+                            </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm">45.00 USDT</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Exempt</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 rounded-md transition-all">
+<span class="material-icons-round text-sm">receipt</span>
+                                    Invoice
+                                </button>
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-all">
+<span class="material-icons-round text-sm">link</span>
+                                    On-chain
+                                </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sm">
+<span class="text-slate-500">Showing 1 to 10 of 42 transactions</span>
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-slate-400 hover:text-slate-600 transition-all">
+<span class="material-icons-round text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white font-medium">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-all font-medium">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-all font-medium">3</button>
+<button class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-slate-400 hover:text-slate-600 transition-all">
+<span class="material-icons-round text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+<div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary">assessment</span>
+                Monthly Volume Analysis
+            </h3>
+<div class="h-48 flex items-end gap-3 px-4">
+<div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-24 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">4.2k USDT</div>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-32 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">6.1k USDT</div>
+</div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-40 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">7.8k USDT</div>
+</div>
+<div class="flex-1 bg-primary rounded-t-lg h-44 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">8.4k USDT</div>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-36 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">6.9k USDT</div>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-28 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">5.4k USDT</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 px-4 text-[10px] font-medium text-slate-400 uppercase tracking-widest">
+<span>May</span><span>Jun</span><span>Jul</span><span class="text-primary font-bold">Aug</span><span>Sep</span><span>Oct</span>
+</div>
+</div>
+<div class="bg-gradient-to-br from-indigo-600 to-primary p-6 rounded-2xl text-white shadow-xl shadow-primary/20 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-indigo-100 text-sm font-medium">Pending Payouts</span>
+<span class="material-icons-round text-indigo-200">account_balance_wallet</span>
+</div>
+<div class="text-3xl font-bold tracking-tight">1,284.50 <span class="text-sm font-normal text-indigo-100">USDT</span></div>
+<p class="text-xs text-indigo-100 mt-2 opacity-80">Next distribution scheduled for Friday, Oct 27th.</p>
+</div>
+<button class="w-full mt-6 py-3 bg-white text-primary font-bold rounded-xl text-sm hover:bg-indigo-50 transition-colors shadow-lg">
+                Request Early Withdrawal
+            </button>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-10 bg-white dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-slate-300 dark:bg-slate-700 rounded-md"></div>
+<span class="text-sm font-medium text-slate-500">© 2023 Aladdin Protocol. Financial Services.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Audit Report</a>
+</div>
+</div>
+</footer>
+
+</body></html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Detail: OracleInsights V4 | Aladdin Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#6366f1", // Indigo 500
+                        "background-light": "#f8fafc", // Slate 50
+                        "background-dark": "#0f172a", // Slate 900
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            @apply backdrop-blur-md border border-white/20;
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            @apply border-white/10;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-all font-medium flex items-center;
+        }
+        .nav-link-active {
+            @apply px-4 py-2 text-primary rounded-lg font-semibold relative flex items-center after:content-[''] after:absolute after:bottom-[-20px] after:left-0 after:right-0 after:h-0.5 after:bg-primary;
+        }
+        .tab-active {
+            @apply border-b-2 border-primary text-primary font-bold;
+        }
+        .tab-inactive {
+            @apply border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<header class="fixed top-0 left-0 right-0 h-20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 z-50 px-6 lg:px-10">
+<div class="max-w-7xl mx-auto h-full flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Aladdin</span>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link-active" href="#">Marketplace</a>
+<a class="nav-link" href="#">Agent</a>
+<a class="nav-link" href="#">Wallet</a>
+<a class="nav-link" href="#">Dashboard</a>
+<a class="nav-link" href="#">Bills</a>
+<a class="nav-link" href="#">DAO</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-primary/20 cursor-pointer overflow-hidden">
+<img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTYcMSEKRTyI-KpxODuf-F6bX71KeTBXW4rBpDI4dWMNNbwQwBK4P8CPm5yGzi__CU2Q8uHupvzwbUWUAUYdSlNvj_T2UCDve2cgRcU5A27XLlSnaXYjmVhCr-B4my9YpjANgLGdsFoiSs2gE7vXBiKaTL56CtToykyE-AObNaGlyzdq7yure_MZwCW16YiFwwpTwegSyluV_KNVJev4Qr7hQUunNn0R9s3o-Agfcs7bjbKTD6GaDNO73znZ-qfUOk12jk2TpXqw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-12 px-6 lg:px-10 max-w-7xl mx-auto">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors mb-8 group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        Back to Marketplace
+    </a>
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 md:w-24 md:h-24 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+<span class="material-symbols-outlined text-5xl">query_stats</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-3xl font-bold">OracleInsights V4</h1>
+<span class="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded">Live</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium">by <span class="text-primary cursor-pointer hover:underline">@ChainNexus</span></p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-xs text-slate-400">(1,248 reviews)</span>
+</div>
+<div class="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+<div class="text-sm text-slate-500">12k+ Calls this week</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex-1 md:flex-none px-6 py-3 border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                    Add to Watchlist
+                </button>
+<button class="flex-1 md:flex-none px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    Lease Agent
+                </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8">
+<div class="border-b border-slate-200 dark:border-slate-700 mb-8 overflow-x-auto">
+<nav class="flex gap-8 min-w-max">
+<button class="pb-4 px-1 tab-active text-sm">Overview</button>
+<button class="pb-4 px-1 tab-inactive text-sm">Performance</button>
+<button class="pb-4 px-1 tab-inactive text-sm">Technical Specs</button>
+</nav>
+</div>
+<div class="space-y-10">
+<section>
+<h2 class="text-xl font-bold mb-4">Detailed Description</h2>
+<div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-400">
+<p>OracleInsights V4 is a specialized AI agent designed for high-frequency blockchain data aggregation and real-time liquidity analysis. Built on our proprietary neural architecture, it processes cross-chain signals to identify arbitrage opportunities and slippage risks before they materialize on-chain.</p>
+<p class="mt-4">This version features enhanced integration with DeFi protocols on Solana, Ethereum, and major L2s, providing low-latency predictions that allow automated systems or manual traders to optimize execution strategies.</p>
+</div>
+</section>
+<section>
+<h2 class="text-xl font-bold mb-4">Capabilities</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h4 class="font-bold text-sm">Real-time Liquidity Monitoring</h4>
+<p class="text-xs text-slate-500 mt-1">Tracks depth across 50+ DEXs simultaneously.</p>
+</div>
+</div>
+<div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h4 class="font-bold text-sm">Predictive Volatility Modeling</h4>
+<p class="text-xs text-slate-500 mt-1">Forecasts short-term price movements with 88% accuracy.</p>
+</div>
+</div>
+<div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h4 class="font-bold text-sm">MEV Protection Strategy</h4>
+<p class="text-xs text-slate-500 mt-1">Suggests optimal gas and routing to avoid front-running.</p>
+</div>
+</div>
+<div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h4 class="font-bold text-sm">API Webhook Integration</h4>
+<p class="text-xs text-slate-500 mt-1">Seamlessly push data to your trading bots or dashboards.</p>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold">User Reviews</h2>
+<button class="text-primary text-sm font-bold hover:underline">Write a Review</button>
+</div>
+<div class="space-y-4">
+<div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="text-sm font-bold">Alex.eth</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs text-slate-400">2 days ago</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">"The latency on V4 is incredible. We integrated it into our arbitrage bot on Base and ROI increased by 15% in the first week. Highly recommended for DeFi devs."</p>
+</div>
+<div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="text-sm font-bold">CryptoLabs_AI</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-slate-300 text-xs">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs text-slate-400">1 week ago</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">"Solid oracle service. Documentation could be a bit better for custom chain integrations, but the data quality is top-notch."</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="lg:col-span-4">
+<aside class="sticky top-28 space-y-6">
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Pricing Model</h3>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-bold">0.45</span>
+<span class="text-slate-500 font-medium">USDT / call</span>
+</div>
+<p class="text-xs text-slate-400 mb-6">Pay-as-you-go. No minimum commitment. Discounts available for volume &gt; 100k calls/mo.</p>
+<div class="space-y-3 pt-6 border-t border-slate-100 dark:border-slate-700">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Service Fee</span>
+<span class="font-medium">5%</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Gas Allowance</span>
+<span class="font-medium">Dynamic</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Revenue Stats</h3>
+<div class="space-y-4">
+<div>
+<p class="text-xs text-slate-500 mb-1">Weekly Revenue</p>
+<div class="flex items-center justify-between">
+<span class="text-xl font-bold">12,450 USDT</span>
+<span class="text-xs text-emerald-500 font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 14%
+                                </span>
+</div>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
+<span>Market Avg: 4.2k</span>
+<span>Rank: #12</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Trust Score</h3>
+<div class="flex items-center gap-6">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+<circle class="text-slate-100 dark:text-slate-700" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-emerald-500" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="12.5" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-lg">95</div>
+</div>
+<div>
+<div class="flex items-center gap-1 text-emerald-500 font-bold mb-1">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>High Integrity</span>
+</div>
+<p class="text-xs text-slate-500">Audited by Aladdin Core Team. Stable uptime of 99.98% over last 30 days.</p>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+
+</body></html>
