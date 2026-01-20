@@ -180,3 +180,8 @@ export function isString(value: unknown): value is string {
 export function isNumber(value: unknown): value is number {
   return typeof value === 'number' && !isNaN(value);
 }
+
+export function formatJobLog(jobName: string, status: string): string {
+  const timestamp = new Date().toISOString();
+  return `[${timestamp}] ${jobName}: ${status}`;
+}
