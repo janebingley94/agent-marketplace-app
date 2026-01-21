@@ -26,3 +26,6 @@ Dashboard module:
 - Overview: `GET /dashboard/overview` (Bearer token)
 - Earnings: `GET /dashboard/earnings` (Bearer token)
 - Agents distribution: `GET /dashboard/agents` (Bearer token)
+
+API docs:
+- Swagger UI: `http://localhost:7001/api/docs`

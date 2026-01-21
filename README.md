@@ -105,3 +105,6 @@ curl "http://localhost:7001/dashboard/overview?range=7d" \
 curl "http://localhost:7001/dashboard/earnings?range=30d&groupBy=day" \
   -H 'Authorization: Bearer <token>'
 ```
+
+Swagger docs:
+- `http://localhost:7001/api/docs`
