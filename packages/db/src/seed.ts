@@ -1,5 +1,5 @@
 import { PrismaClient, AgentStatus, BillStatus, ProposalStatus } from '@prisma/client';
-import { seedAgents, seedUsers, planTemplates } from './seed-data';
+import { seedAgents, seedUsers, planTemplates } from './seed-data.js';
 
 const prisma = new PrismaClient();
 

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { seedAgents, seedUsers, planTemplates } from './seed-data';
+import { seedAgents, seedUsers, planTemplates } from './seed-data.js';
 import { AgentStatus, PlanType } from '@prisma/client';
 
 const requiredAgentKeys = ['name', 'slug', 'description', 'category', 'tags'];

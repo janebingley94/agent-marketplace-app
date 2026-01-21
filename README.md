@@ -83,3 +83,13 @@ curl -X POST http://localhost:7001/auth/verify \
 curl http://localhost:7001/auth/me \
   -H 'Authorization: Bearer <token>'
 ```
+
+Agents example:
+
+```bash
+curl "http://localhost:7001/agents?q=analyst&category=Analytics&tags=data,analysis&sort=createdAt&order=desc&page=1&limit=20"
+```
+
+```bash
+curl "http://localhost:7001/agents/leaderboard?metric=revenue&limit=5"
+```
