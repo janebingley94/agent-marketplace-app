@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AgentsModule } from './agents/agents.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { PrismaModule } from './database/prisma.module';
 import { RedisModule } from './redis/redis.module';
 
@@ -16,6 +17,7 @@ import { RedisModule } from './redis/redis.module';
     RedisModule,
     AuthModule,
     AgentsModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

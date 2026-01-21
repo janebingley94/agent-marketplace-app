@@ -93,3 +93,15 @@ curl "http://localhost:7001/agents?q=analyst&category=Analytics&tags=data,analys
 ```bash
 curl "http://localhost:7001/agents/leaderboard?metric=revenue&limit=5"
 ```
+
+Dashboard example:
+
+```bash
+curl "http://localhost:7001/dashboard/overview?range=7d" \
+  -H 'Authorization: Bearer <token>'
+```
+
+```bash
+curl "http://localhost:7001/dashboard/earnings?range=30d&groupBy=day" \
+  -H 'Authorization: Bearer <token>'
+```
