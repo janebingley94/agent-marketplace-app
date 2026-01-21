@@ -31,6 +31,24 @@ Required variables for the API:
 - `REDIS_URL`
 - `JWT_SECRET`
 
+## Local infrastructure (Docker)
+
+```bash
+docker compose up -d
+```
+
+Services:
+- Postgres: `localhost:5432`
+- Redis: `localhost:6379`
+
+## Database setup
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+```
+
 ## API example
 
 ```bash
