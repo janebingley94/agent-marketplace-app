@@ -21,6 +21,12 @@ Frontend tooling:
 - TanStack Query + Jotai
 - wagmi + viem
 
+Frontend env:
+- `NEXT_PUBLIC_API_URL` (defaults to `http://localhost:7001`)
+
+Frontend auth:
+- Wallet connect via injected provider + SIWE (`/auth/nonce` -> `/auth/verify`).
+
 ## Environment variables
 
 Copy the example file and adjust as needed:

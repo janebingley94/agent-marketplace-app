@@ -8,3 +8,10 @@
 - State: TanStack Query + Jotai.
 - Wallet: wagmi + viem.
 - Tests: `pnpm --filter @agent-marketplace/web test`.
+
+Environment:
+- `NEXT_PUBLIC_API_URL` (defaults to `http://localhost:7001`).
+
+Auth flow:
+- Wallet connect uses injected provider (MetaMask).
+- SIWE sign-in: `/auth/nonce` -> signature -> `/auth/verify` -> `/auth/me`.

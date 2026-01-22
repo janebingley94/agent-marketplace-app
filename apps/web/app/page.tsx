@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { WalletButton } from '@/components/wallet/wallet-button';
 
 export default function HomePage() {
   return (
@@ -16,6 +17,9 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-3">
           <Button>Get started</Button>
           <Button variant="outline">View docs</Button>
+        </div>
+        <div className="pt-4">
+          <WalletButton />
         </div>
       </section>
     </main>

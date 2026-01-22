@@ -7,6 +7,7 @@ import { WagmiProvider } from 'wagmi';
 
 import { createQueryClient } from '@/lib/query-client';
 import { wagmiConfig } from '@/lib/wagmi';
+import { AuthBootstrap } from '@/components/auth/auth-bootstrap';
 
 type ProvidersProps = {
   children: ReactNode;
@@ -18,7 +19,10 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <JotaiProvider>{children}</JotaiProvider>
+        <JotaiProvider>
+          <AuthBootstrap />
+          {children}
+        </JotaiProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
