@@ -16,6 +16,11 @@ Apps:
 - Web: `http://localhost:7002`
 - API: `http://localhost:7001`
 
+Frontend tooling:
+- Tailwind + shadcn/ui
+- TanStack Query + Jotai
+- wagmi + viem
+
 ## Environment variables
 
 Copy the example file and adjust as needed:

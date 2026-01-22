@@ -25,7 +25,23 @@ describe('AgentsService', () => {
 
   it('defaults list filters to published and paginated response', async () => {
     prisma.agent.count.mockResolvedValue(1);
-    prisma.agent.findMany.mockResolvedValue([{ id: 'agent_1' }]);
+    prisma.agent.findMany.mockResolvedValue([
+      {
+        id: 'agent_1',
+        name: 'Agent One',
+        slug: 'agent-one',
+        description: null,
+        category: null,
+        tags: [],
+        iconUrl: null,
+        status: AgentStatus.PUBLISHED,
+        totalCalls: 0,
+        totalRevenue: 0,
+        owner: { id: 'user_1', name: null, avatarUrl: null },
+        plans: [],
+        createdAt: new Date('2026-01-21T00:00:00Z'),
+      },
+    ]);
 
     const result = await service.listAgents({});
 
@@ -36,7 +52,19 @@ describe('AgentsService', () => {
   });
 
   it('creates agent with generated slug and owner', async () => {
-    prisma.agent.create.mockResolvedValue({ id: 'agent_1' });
+    prisma.agent.create.mockResolvedValue({
+      id: 'agent_1',
+      name: 'My Agent',
+      slug: 'my-agent',
+      description: null,
+      category: null,
+      tags: [],
+      iconUrl: null,
+      isPrivate: false,
+      status: AgentStatus.DRAFT,
+      createdAt: new Date('2026-01-21T00:00:00Z'),
+      updatedAt: new Date('2026-01-21T00:00:00Z'),
+    });
 
     const result = await service.createAgent(
       {
@@ -53,6 +81,12 @@ describe('AgentsService', () => {
         }),
       })
     );
-    expect(result).toEqual({ id: 'agent_1' });
+    expect(result).toEqual(
+      expect.objectContaining({
+        id: 'agent_1',
+        slug: 'my-agent',
+        status: AgentStatus.DRAFT,
+      })
+    );
   });
 });

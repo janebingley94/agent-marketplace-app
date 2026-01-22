@@ -1,12 +1,22 @@
 import { Test } from '@nestjs/testing';
 import { AppModule } from './app.module';
+import { PrismaService } from './database/prisma.service';
+import { REDIS_CLIENT } from './redis/redis.constants';
 import { setupSwagger } from './swagger';
 
 describe('Swagger setup', () => {
   it('builds a swagger document with auth endpoints', async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(PrismaService)
+      .useValue({
+        onModuleInit: jest.fn(),
+        onModuleDestroy: jest.fn(),
+      })
+      .overrideProvider(REDIS_CLIENT)
+      .useValue({})
+      .compile();
 
     const app = moduleRef.createNestApplication();
     await app.init();
