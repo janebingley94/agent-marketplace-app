@@ -29,3 +29,13 @@ Dashboard module:
 
 API docs:
 - Swagger UI: `http://localhost:7001/api/docs`
+
+Testing:
+- Unit tests: `pnpm --filter @agent-marketplace/api test`
+- E2E tests: `pnpm --filter @agent-marketplace/api test:e2e`
+- Coverage: `pnpm --filter @agent-marketplace/api test:cov`
+
+Observability (OpenTelemetry):
+- Enable tracing by setting `OTEL_EXPORTER_OTLP_ENDPOINT`.
+- Optional: set `OTEL_SERVICE_NAME` (defaults to `agent-marketplace-api`).
+- Traces are exported via OTLP HTTP when enabled.

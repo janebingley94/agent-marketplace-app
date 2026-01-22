@@ -129,3 +129,14 @@ curl "http://localhost:7001/dashboard/earnings?range=30d&groupBy=day" \
 
 Swagger docs:
 - `http://localhost:7001/api/docs`
+
+Tests:
+```bash
+pnpm --filter @agent-marketplace/api test
+pnpm --filter @agent-marketplace/api test:e2e
+pnpm --filter @agent-marketplace/web test
+```
+
+Observability (API):
+- `OTEL_EXPORTER_OTLP_ENDPOINT` enables OpenTelemetry tracing.
+- `OTEL_SERVICE_NAME` optional, defaults to `agent-marketplace-api`.

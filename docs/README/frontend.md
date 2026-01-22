@@ -16,6 +16,9 @@ Auth flow:
 - Wallet connect uses injected provider (MetaMask).
 - SIWE sign-in: `/auth/nonce` -> signature -> `/auth/verify` -> `/auth/me`.
 
+Testing:
+- Run: `pnpm --filter @agent-marketplace/web test`
+
 Marketplace UI:
 - Components: AgentCard, AgentGrid, SearchBar, FilterBar, CategoryTags, Leaderboard.
 - URL state: `nuqs` for search/filter/pagination.
