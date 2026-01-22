@@ -24,3 +24,11 @@ Agent detail UI:
 - Route: `/agent/[slug]`.
 - Components: AgentDetail, PricingCard, VersionHistory.
 - Tabs: Overview / Performance / Technical Specs.
+
+Studio UI:
+- Route: `/studio`.
+- Components: StudioAgentCard, FleetPerformanceCard, DeveloperApiCard, RecentActivity.
+
+Agent deployment UI:
+- Routes: `/studio/agents/new`, `/studio/agents/[id]/edit`.
+- Component: AgentForm (shared create/edit layout).

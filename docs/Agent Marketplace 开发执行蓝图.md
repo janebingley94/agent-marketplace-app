@@ -1784,7 +1784,7 @@ export const agentFiltersAtom = atom<AgentFilters>({
 - 风险: 表单复杂度
 - DoD: 成功创建Agent
 
-#### Story 4.6: 其他页面 (简化版)
+#### Story 4.6: 其他页面
 
 **Task 4.6.1: 实现Wallet页面**
 
