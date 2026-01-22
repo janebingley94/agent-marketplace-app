@@ -32,6 +32,10 @@ Marketplace:
 - Agent detail page: `/agent/[slug]` with pricing + version history sections.
 - Studio page: `/studio` with agent fleet cards and performance widgets.
 - Agent deployment: `/studio/agents/new` and `/studio/agents/[id]/edit`.
+- Wallet: `/wallet`.
+- Dashboard: `/dashboard`.
+- Bills: `/bills` and `/bills/create`.
+- DAO: `/dao`.
 
 ## Environment variables
 

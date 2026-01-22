@@ -32,3 +32,9 @@ Studio UI:
 Agent deployment UI:
 - Routes: `/studio/agents/new`, `/studio/agents/[id]/edit`.
 - Component: AgentForm (shared create/edit layout).
+
+Other pages:
+- Wallet: `/wallet` (summary cards, earnings, distributions).
+- Dashboard: `/dashboard` (agent workflow + chat).
+- Bills: `/bills` and `/bills/create`.
+- DAO: `/dao` (dispute list + proposal modal).
