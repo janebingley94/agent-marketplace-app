@@ -27,6 +27,10 @@ Frontend env:
 Frontend auth:
 - Wallet connect via injected provider + SIWE (`/auth/nonce` -> `/auth/verify`).
 
+Marketplace:
+- Search/filter/pagination wired to URL state with `nuqs`.
+- Agent detail page: `/agent/[slug]` with pricing + version history sections.
+
 ## Environment variables
 
 Copy the example file and adjust as needed:

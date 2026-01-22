@@ -15,3 +15,12 @@ Environment:
 Auth flow:
 - Wallet connect uses injected provider (MetaMask).
 - SIWE sign-in: `/auth/nonce` -> signature -> `/auth/verify` -> `/auth/me`.
+
+Marketplace UI:
+- Components: AgentCard, AgentGrid, SearchBar, FilterBar, CategoryTags, Leaderboard.
+- URL state: `nuqs` for search/filter/pagination.
+
+Agent detail UI:
+- Route: `/agent/[slug]`.
+- Components: AgentDetail, PricingCard, VersionHistory.
+- Tabs: Overview / Performance / Technical Specs.
