@@ -1,0 +1,85 @@
+name: Task Contract
+description: A machine-checkable task contract for Codex execution and PR gating
+title: "[TASK] <short title>"
+labels: ["task"]
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: TASK_ID
+      description: e.g. T-20260122-001
+      placeholder: T-YYYYMMDD-###
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Links to PRD/spec/screenshots, related code entrypoints, notes
+      placeholder: |
+        - PRD: ...
+        - UI: ...
+        - Related files: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope (Do / Don't)
+      placeholder: |
+        Do:
+        - ...
+        Don't:
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria (must be verifiable)
+      placeholder: |
+        - [ ] AC1: ...
+        - [ ] AC2: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints (paths, deps, limits)
+      placeholder: |
+        Allowed paths:
+        - apps/**
+        - packages/**
+        Forbidden paths:
+        - infra/**
+        - contracts/**
+        Dependency rule:
+        - No new deps without justification
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification Commands (must-run)
+      placeholder: |
+        - pnpm -w turbo run lint typecheck test build
+        - pnpm --filter @agent-marketplace/api test
+        - pnpm --filter @agent-marketplace/web test
+    validations:
+      required: true
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      placeholder: |
+        - PR with TASK_ID referenced
+        - Tests updated/added
+        - Screenshots/trace/logs if UI
+    validations:
+      required: true

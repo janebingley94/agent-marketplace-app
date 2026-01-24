@@ -1,0 +1,109 @@
+name: Codex Bot
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    if: contains(github.event.comment.body, '/codex')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Parse /codex command
+        id: parse
+        shell: bash
+        run: |
+          body="${{ github.event.comment.body }}"
+          echo "$body" > comment.txt
+
+          TASK_ID=$(grep -E '^TASK_ID=' comment.txt | head -n1 | cut -d= -f2- || true)
+          BRANCH=$(grep -E '^BRANCH=' comment.txt | head -n1 | cut -d= -f2- || true)
+          TITLE=$(grep -E '^TITLE=' comment.txt | head -n1 | cut -d= -f2- || true)
+
+          if [ -z "$TASK_ID" ] || [ -z "$BRANCH" ] || [ -z "$TITLE" ]; then
+            echo "Missing TASK_ID / BRANCH / TITLE in comment."
+            echo "Expected:"
+            echo "/codex"
+            echo "TASK_ID=T-20260122-001"
+            echo "BRANCH=codex/T-20260122-001"
+            echo "TITLE=feat: ..."
+            exit 1
+          fi
+
+          echo "task_id=$TASK_ID" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Codex CLI
+        run: npm i -g @openai/codex
+
+      - name: Enable corepack (pnpm)
+        run: corepack enable
+
+      - name: Install deps (optional but recommended for better Codex results)
+        run: pnpm install --frozen-lockfile
+
+      - name: Create branch
+        run: |
+          git checkout -b "${{ steps.parse.outputs.branch }}"
+
+      - name: Build prompt from issue + comment context
+        shell: bash
+        run: |
+          cat > .codex_prompt.txt <<'EOF'
+You are Codex CLI working inside this repository.
+
+Follow the repository rules in Agents.md.
+
+Task:
+- TASK_ID: ${{ steps.parse.outputs.task_id }}
+- TITLE: ${{ steps.parse.outputs.title }}
+
+Instructions:
+1) Read the GitHub Issue description (this comment is attached to an Issue). Implement exactly what the Issue contract asks.
+2) Stay in scope. Avoid unrelated refactors.
+3) Add/update tests as needed.
+4) Run verification:
+   - pnpm -w turbo run lint typecheck test build
+5) Summarize changes.
+
+EOF
+
+      - name: Run Codex task
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          chmod +x scripts/codex/run_task.sh
+          ./scripts/codex/run_task.sh "${{ steps.parse.outputs.task_id }}" "${{ steps.parse.outputs.title }}"
+
+      - name: Commit & push
+        shell: bash
+        run: |
+          git status --porcelain
+          git add -A
+          git commit -m "codex: ${{ steps.parse.outputs.task_id }} ${{ steps.parse.outputs.title }}" || exit 0
+          git push -u origin "${{ steps.parse.outputs.branch }}"
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "codex: ${{ steps.parse.outputs.task_id }} ${{ steps.parse.outputs.title }}" \
+            --body "Automated by Codex CLI via GitHub Actions.\n\nTASK_ID: ${{ steps.parse.outputs.task_id }}" \
+            --head "${{ steps.parse.outputs.branch }}" \
+            --base dev-0121

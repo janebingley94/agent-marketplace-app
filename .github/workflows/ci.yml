@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [dev-0121]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # NOTE: README 提到推荐 Node v25.2.1，但 engines “保持灵活”
+      # GitHub Actions 不一定有 25.x，先用 22 LTS；如果你 repo 强依赖 25.x，再改这里。
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint / Typecheck / Test / Build (turbo)
+        run: pnpm -w turbo run lint typecheck test build
